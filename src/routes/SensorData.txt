@@ -1,0 +1,4 @@
+Humidity 350
+Light 720
+Temperature 80
+SoilMoisture 90

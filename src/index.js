@@ -1,18 +1,22 @@
 require('./models/User');
+require('./models/Plants');
+require('./models/Sensor');
 
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/authRoutes');
+const plantRoutes = require('./routes/plantRoutes');
 
 const requireAuth = require('./middlewares/requireAuth');
 const app = express();
 
 app.use(bodyParser.json());
 app.use(authRoutes);
+app.use(plantRoutes);
 
 const portnumber = 3000;
-const mongoURI = 'mongodb+srv://Afftrack:afftrack@cluster0.ka7jd.mongodb.net/test?retryWrites=true&w=majority'
+const mongoURI = 'mongodb+srv://Afftrack:afftrack@cluster0.ka7jd.mongodb.net/test?retryWrites=true&w=majority';
 
 mongoose.connect(mongoURI, {
     useNewUrlParser: true,
