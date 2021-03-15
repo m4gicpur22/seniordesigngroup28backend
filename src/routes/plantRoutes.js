@@ -15,35 +15,39 @@ var SensorTypes = [];
 
 //edit try catch to reopen it every couple of minutes
 try {
-    const fileOut = fs.readFileSync(__dirName + 'seniordesigngroup28backend/src/routes/SensorData.txt', 'utf8');
-    const lines = fileOut.split(/\r?\n/);
+        const fileOut = fs.readFileSync(__dirName + 'seniordesigngroup28backend/src/routes/SensorData.txt', 'utf8');
+        const lines = fileOut.split(/\r?\n/);
 
-    lines.forEach( (word) => {
+        lines.forEach( (word) => {
+            wordlines = word.split(" ");
 
-        wordlines = word.split(" ");
+            SensorTypes.push(wordlines[0]);
 
-        SensorTypes.push(wordlines[0]);
+            sensorDict.push({
+                key: wordlines[0],
+                value: wordlines[1]
+            });
 
-        sensorDict.push({
-            key: wordlines[0],
-            value: wordlines[1]
         });
-
-    });
-}
+    }
 catch(err){
     console.log("Issue opening file with error: " + err);
 }
 
 //this is the route for getting sensor data back
 router.get('/getSensorInfo', async(req, res) => {
-    try{
-        const HumidityValue = sensorDict[0].value;
-        const LuxValue = sensorDict[1].value;
-        const TempValue = sensorDict[2].value;
-        const SoilMoistureValue = sensorDict[3].value;
+    const HumidityValue = sensorDict[0].value;
+    const LuxValue = sensorDict[1].value;
+    const TempValue = sensorDict[2].value;
+    const SoilMoistureValue = sensorDict[3].value;
 
-        const sensor = new Sensor({LuxValue, TempValue, HumidityValue, SoilMoistureValue});
+    try{
+        const sensor = new Sensor({
+            "lightLevel": HumidityValue, 
+            "temperatureLevel": LuxValue, 
+            "humidityLevel": TempValue, 
+            "soilmoistureLevel": SoilMoistureValue
+        });
 
         //save sensor info into database
         await sensor.save();
@@ -53,7 +57,7 @@ router.get('/getSensorInfo', async(req, res) => {
     catch(err){
         console.log("Error saving details with code: " + err);
         return console.error(err);
-        }
+    }
 });
 
 
