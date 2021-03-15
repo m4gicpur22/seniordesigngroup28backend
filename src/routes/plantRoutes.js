@@ -13,11 +13,13 @@ var sensorDict = [];
 var SensorTypes = [];
 //make an array for average values of data
 
-//edit try catch to reopen it every couple of minutes
-try {
+//this is the route for getting sensor data back
+router.get('/getSensorInfo', async(req, res) => {
+
+    try {
         const fileOut = fs.readFileSync(__dirName + 'seniordesigngroup28backend/src/routes/SensorData.txt', 'utf8');
         const lines = fileOut.split(/\r?\n/);
-
+        
         lines.forEach( (word) => {
             wordlines = word.split(" ");
 
@@ -30,12 +32,10 @@ try {
 
         });
     }
-catch(err){
-    console.log("Issue opening file with error: " + err);
-}
+    catch(err){
+        console.log("Issue opening file with error: " + err);
+    }
 
-//this is the route for getting sensor data back
-router.get('/getSensorInfo', async(req, res) => {
     const HumidityValue = sensorDict[0].value;
     const LuxValue = sensorDict[1].value;
     const TempValue = sensorDict[2].value;
@@ -59,6 +59,5 @@ router.get('/getSensorInfo', async(req, res) => {
         return console.error(err);
     }
 });
-
 
 module.exports = router;
