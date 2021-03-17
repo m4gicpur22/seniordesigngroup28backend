@@ -13,11 +13,11 @@ const SensorSchema = new mongoose.Schema({
     humidityLevel: {
         type: String,
         required: true
-    },
-    soilmoistureLevel: {
-        type: String,
-        required: true
     }
+    // soilmoistureLevel: {
+    //     type: String,
+    //     required: true
+    // }
 });
 
 mongoose.model('Sensor', SensorSchema);

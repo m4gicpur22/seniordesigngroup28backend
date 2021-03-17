@@ -36,17 +36,17 @@ router.get('/getSensorInfo', async(req, res) => {
         console.log("Issue opening file with error: " + err);
     }
 
-    const HumidityValue = sensorDict[0].value;
-    const LuxValue = sensorDict[1].value;
-    const TempValue = sensorDict[2].value;
-    const SoilMoistureValue = sensorDict[3].value;
+    const TempValue = sensorDict[0].value;
+    const HumidityValue = sensorDict[1].value;
+    const LuxValue = sensorDict[2].value;
+    //const SoilMoistureValue = sensorDict[3].value;
 
     try{
         const sensor = new Sensor({
-            "lightLevel": HumidityValue, 
-            "temperatureLevel": LuxValue, 
-            "humidityLevel": TempValue, 
-            "soilmoistureLevel": SoilMoistureValue
+            "lightLevel": LuxValue, 
+            "temperatureLevel": TempValue, 
+            "humidityLevel": HumidityValue
+            // "soilmoistureLevel": SoilMoistureValue
         });
 
         //save sensor info into database
