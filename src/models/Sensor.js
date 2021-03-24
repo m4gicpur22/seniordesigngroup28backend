@@ -18,6 +18,10 @@ const SensorSchema = new mongoose.Schema({
     //     type: String,
     //     required: true
     // }
+    ,DateTime: { 
+        type: Date,
+        required: true
+    }
 });
 
 mongoose.model('Sensor', SensorSchema);
