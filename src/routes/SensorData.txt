@@ -1,4 +1,0 @@
-Humidity 46
-Light 256
-Temperature 21
-SoilMoisture 90

@@ -11,7 +11,8 @@ const plantRoutes = require('./routes/plantRoutes');
 const requireAuth = require('./middlewares/requireAuth');
 const app = express();
 
-app.use(bodyParser.json());
+//app.use(bodyParser.json());
+app.use(express.json({limit: '50mb'}));
 app.use(authRoutes);
 app.use(plantRoutes);
 

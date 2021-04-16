@@ -2,26 +2,39 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const SensorSchema = new mongoose.Schema({
-    lightLevel: {
-        type: String,
-        required: true
+    Celsius: {
+        type: Number
     },
-    temperatureLevel: {
-        type: String,
-        required: true
+    Fahrenheit: {
+        type: Number
     },
     humidityLevel: {
-        type: String,
-        required: true
-    }
-    // soilmoistureLevel: {
-    //     type: String,
-    //     required: true
-    // }
-    ,DateTime: { 
-        type: Date,
-        required: true
+        type: Number
+    },
+    lightLevel: {
+        type: Number,
+    },
+    Soilmoisture_1: { 
+        type: Number
+    },
+    Soilmoisture_2: { 
+        type: Number
+    },
+    DateTime : {
+        type: Date
+    },
+    DateTimeString : {
+        type: String
+    },
+    CPUTemperature: {
+        type: Number
+    },
+    CoolingSystemState: {
+        type: Number
+    },
+    IrrigationMSP : {
+        type: Number
     }
 });
 
-mongoose.model('Sensor', SensorSchema);
+mongoose.model('Officialdata', SensorSchema, 'newsensorsdata');
